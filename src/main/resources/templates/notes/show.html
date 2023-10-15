@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Note</title>
+    </head>
+    <body>
+    <!--Отображаем заметку и её id-->
+        <p th:text="${note.note}">NOTE</p>
+        <p th:text="${note.id}">ID</p>
+    <!--Изменить заметку-->
+        <a th:href="@{/notes/edit/{id}(id = ${note.id})}">Edit</a>
+    <!--Удалить заметку-->
+    <form th:method="DELET" th:action="@{/notes/{id}(id = ${note.id})}">
+        <input type="submit" value="Delete">
+    </form>
+    </body>
+</html>

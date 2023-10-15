@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>New note</title>
+    </head>
+    <body>
+    <!--Отображаем форму для создания новой заметки-->
+        <form th:method="POST" th:action="@{/notes}" th:object="${webNote}">
+          <label for="note">Enter note:</label>
+          <input type="text" th:field="*{note}" id="note">
+          <input type="submit" value="Add note">
+        </form>
+    </body>
+</html>

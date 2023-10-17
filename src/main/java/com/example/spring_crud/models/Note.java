@@ -1,16 +1,17 @@
 package com.example.spring_crud.models;
 
-public class WebNote {
+public class Note {
     private int id;
     private String note;
 
-    // конструктор
-    public WebNote(int id, String note) {
+    public Note() {
+    }
+
+    public Note(int id, String note) {
         this.id = id;
         this.note = note;
     }
 
-    // геттеры и сеттеры
     public int getId() {
         return id;
     }

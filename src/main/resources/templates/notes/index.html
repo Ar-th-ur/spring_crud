@@ -1,19 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>All notes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                crossorigin="anonymous"></script>
     </head>
     <body>
-    <!--Отображаем все заметки с ссылками на них-->
-        <div th:each="note : ${notes}">
-            <a th:href="@{/notes/{id}(id = ${note.id})}"
-                th:text="${note.getNote()}"></a>
+        <nav th:insert="notes/nav-neader :: navigation" class="navbar navbar-expand-lg bg-body-tertiary"></nav>
+        <div class="container">
+            <div class="col-10 mx-auto mt-5 text text-center">
+                <h2>Ваши заметки</h2>
+                <div th:each="note : ${notes}">
+                    <a class="btn btn-success opacity-75 mt-3 p-1"
+                       th:href="@{/notes/{id}(id = ${note.id})}"
+                       role="button"
+                       th:text="${note.note.length() > 85} ? ${note.note.substring(0, 85).concat('...')} : ${note.note}"
+                       style="width: 700px; height: 35px">
+                    </a>
+                </div>
+            </div>
         </div>
-
-    <br/>
-    <hr/>
-    <!--Новая заметка-->
-    <a href="notes/new">New note</a>
     </body>
 </html>

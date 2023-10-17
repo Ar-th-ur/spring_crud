@@ -1,15 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>New note</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                crossorigin="anonymous"></script>
     </head>
     <body>
-    <!--Отображаем форму для создания новой заметки-->
-        <form th:method="POST" th:action="@{/notes}" th:object="${webNote}">
-          <label for="note">Enter note:</label>
-          <input type="text" th:field="*{note}" id="note">
-          <input type="submit" value="Add note">
-        </form>
+        <nav th:insert="notes/nav-neader :: navigation" class="navbar navbar-expand-lg bg-body-tertiary"></nav>
+        <div class="container">
+            <div class="col-6 mx-auto">
+                <div style="height: 150px"></div>
+                <h2 class="text text-center">Создание заметки</h2>
+                <form th:action="@{/notes}" method="post" th:object="${note}">
+                    <input type="text"
+                           th:field="*{note}"
+                           class="form-control bg-success bg-opacity-75 mb-3"
+                           placeholder="Напишите заметку"
+                           style="height: 50px; font-size: 20px">
+                    <input class="btn btn-success col-12"
+                           type="submit" value="Добавить заметку"
+                           style="font-size: 18px">
+                </form>
+            </div>
+        </div>
     </body>
 </html>

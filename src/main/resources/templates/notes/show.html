@@ -1,18 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Note</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                crossorigin="anonymous"></script>
     </head>
     <body>
-    <!--Отображаем заметку и её id-->
-        <p th:text="${note.note}">NOTE</p>
-        <p th:text="${note.id}">ID</p>
-    <!--Изменить заметку-->
-        <a th:href="@{/notes/edit/{id}(id = ${note.id})}">Edit</a>
-    <!--Удалить заметку-->
-    <form th:method="DELET" th:action="@{/notes/{id}(id = ${note.id})}">
-        <input type="submit" value="Delete">
-    </form>
+        <nav th:insert="notes/nav-neader :: navigation" class="navbar navbar-expand-lg bg-body-tertiary"></nav>
+        <div class="container">
+            <div class="col-6 mx-auto">
+                <div style="height: 150px"></div>
+                <h2 class="text text-center">Ваша заметка</h2>
+                <div class="bg-success bg-gradient text text-center text-white"
+                     style="border-radius: 5px 5px 5px 5px; height: auto; min-height: 50px; width: initial">
+                    <div class="p-3" th:text="${note.note}" style="font-size: 20px">
+                    </div>
+                </div>
+                <div class="row text text-center mt-3">
+                    <div class="col-6">
+                        <a th:href="@{/notes/edit/{id}(id = ${note.id})}" class="btn btn-success col-12" role="button" style="font-size: 18px">
+                            Редактировать заметку
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <form th:action="@{/notes/{id}(id = ${note.id})}" th:method="DELETE">
+                            <input class="btn btn-success col-12" type="submit" value="Удалить заметку" style="font-size: 18px">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
